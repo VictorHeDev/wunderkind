@@ -16,3 +16,11 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
   - [ ] Behind the overlay add a semi­-transparent black background that obscures the site.
   - [ ] The overlay should be able to trigger multiple times if dismissed.
 - [ ] The overlay should have a style consistent with the website. Design matters.
+
+### Resources Used
+
+[jQuery](https://api.jquery.com/) - instead of using Vanilla JS to manipulate the DOM
+
+### Lessons I learned
+
+- I guess jQuery is not so bad
