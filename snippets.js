@@ -12,5 +12,33 @@
 */
 
 // extracts number of items in the cart
-let numItemsInCart = $('.number-items.boss-number-items.nonzero-items')[0]
-  .innerHTML;
+const getNumItemsInCart = () => {
+  let numItemsInCart = $('.number-items.boss-number-items.nonzero-items')[0]
+    .innerHTML;
+  return numItemsInCart;
+};
+
+// extracts the cart total
+const calculateCartTotal = () => {
+  let subTotal = $('.subtotal')[0].innerHTML;
+  return subTotal;
+};
+
+// extracts the item images from the page
+// to make this better, I think we can use a JS object
+// that way we can hold the key (name of product)
+// and value (img link)
+// add a check to determine if there are any items in cart anyways
+// we should return a more descriptive message instead of an undefined
+const extractCartItemImages = () => {
+  let items = $('.kas-newpb-product-image');
+  let imgItemsLength = items.length;
+  let imgLinks = [];
+  for (let i = 0; i < imgItemsLength; i++) {
+    let itemName = items[i].alt;
+    let link = items[i].currentSrc;
+    let newItem = { itemName, link };
+    imgLinks.push(newItem);
+  }
+  return imgLinks;
+};
