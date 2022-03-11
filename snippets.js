@@ -42,3 +42,5 @@ const extractCartItemImages = () => {
   }
   return imgLinks;
 };
+
+// create trigger that activates when the user scrolls into the bottom 10% of the page
