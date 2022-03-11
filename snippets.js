@@ -11,3 +11,6 @@
 - The overlay should have a style consistent with the website. Design matters.
 */
 
+// extracts number of items in the cart
+let numItemsInCart = $('.number-items.boss-number-items.nonzero-items')[0]
+  .innerHTML;
