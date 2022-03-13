@@ -9,7 +9,7 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
 - [x] Go to kohls.com and add at least 2 products to your cart. Then return to the home page.
 - [ ] Write a JavaScript snippet that can be run in the console of the browser that does the following:
   - [x] Extracts the number of items in the cart, the cart total, and the item images from the page. Store them in variables.
-  - [ ] Creates a trigger that activates when the user scrolls into the bottom 10% of the page.
+  - [x] Creates a trigger that activates when the user scrolls into the bottom 10% of the page.
   - [ ] The trigger should show a centered overlay on top of the site that displays the information gathered above and two buttons:
     - [ ] one button should close the overlay
     - [ ] the other should take the user to the cart page
@@ -19,7 +19,8 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
 
 ### Resources Used
 
-[jQuery](https://api.jquery.com/) - instead of using Vanilla JS to manipulate the DOM
+- [jQuery](https://api.jquery.com/) - instead of using Vanilla JS to manipulate the DOM
+- [Kohls](https://www.kohls.com/) - main website used to practice
 
 ### Lessons I learned
 

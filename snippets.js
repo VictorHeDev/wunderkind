@@ -47,3 +47,37 @@ const extractCartItemImages = () => {
 $(window).scroll(() => {
   console.log('scrolled!~');
 });
+
+// for bottom 10%
+const checkIfBottomHalf = () => {
+  $(window).scroll(function () {
+    if ($(window).scrollTop() > $('body').height() / 2) {
+      console.log("I'm a banana");
+    }
+  });
+};
+
+// event listener to detect scroll
+const alertWhenInBottomTenPercent = () => {
+  $(window).scroll(() => {
+    if (
+      $(window).scrollTop() + $(window).height() >
+      $(document).height() - $(document).height() / 10
+    ) {
+      console.log('Bottom 10% of page');
+    }
+  });
+};
+
+// create modal for webpage
+const addModalToPage = () => {
+  createModal();
+};
+
+const createModal = () => {
+  $('body').prepend('<div class="wunderkind-modal">This is an added div</div>');
+};
+
+const addCloseBtn = () => {
+  $('.wunderkind-modal').append('<button>x</button>');
+};
