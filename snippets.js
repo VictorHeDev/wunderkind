@@ -32,18 +32,18 @@ const extractCartItemImages = () => {
 };
 
 // create trigger that activates when the user scrolls into the bottom 10% of the page
-$(window).scroll(() => {
-  console.log('scrolled!~');
-});
+// $(window).scroll(() => {
+//   console.log('scrolled!~');
+// });
 
 // for bottom 10%
-const checkIfBottomHalf = () => {
-  $(window).scroll(function () {
-    if ($(window).scrollTop() > $('body').height() / 2) {
-      console.log("I'm a banana");
-    }
-  });
-};
+// const checkIfBottomHalf = () => {
+//   $(window).scroll(function () {
+//     if ($(window).scrollTop() > $('body').height() / 2) {
+//       console.log("I'm a banana");
+//     }
+//   });
+// };
 
 // event listener to detect scroll
 const alertWhenInBottomTenPercent = () => {
@@ -53,7 +53,31 @@ const alertWhenInBottomTenPercent = () => {
       $(document).height() - $(document).height() / 10
     ) {
       console.log('Bottom 10% of page');
+
+      // $('body').prepend(
+      //   '<div class="wunderkind-modal">This is an added div</div>'
+      // );
+
+      $('#overlay').css({ display: 'block' });
+      $('.wunderkind-modal').css({ display: 'block' });
     }
+  });
+};
+
+const createOverlay = () => {
+  $('body').prepend('<div id="overlay"><div>');
+
+  $('#overlay').css({
+    position: 'fixed',
+    top: '0',
+    left: '0',
+    width: '100%',
+    height: '100%',
+    background: '#000',
+    opacity: '0.5',
+    filter: 'alpha(opacity=50)',
+    'z-index': '5000',
+    display: 'none',
   });
 };
 
@@ -65,16 +89,16 @@ const createModal = () => {
   let modal = $('.wunderkind-modal');
 
   //Set the popup window to center
-
   $('.wunderkind-modal').css({
     display: 'flex',
     'flex-direction': 'column',
     width: '40%',
     height: '30%',
     position: 'fixed',
-    'z-index': '10000',
+    'z-index': '9999',
     border: '3px solid red',
     'background-color': 'white',
+    display: 'none',
   });
 
   modal.css('top', winH / 2 - modal.height() / 2);
@@ -99,9 +123,16 @@ const addCloseBtn = () => {
     '<button class="wunderkind-modal-close-btn">x</button>'
   );
 
+  // $(function () {
+  //   $('.wunderkind-modal-close-btn').click(function () {
+  //     $('.wunderkind-modal').hide(400);
+  //   });
+  // });
   $(function () {
     $('.wunderkind-modal-close-btn').click(function () {
-      $('.wunderkind-modal').hide(400);
+      // $('.wunderkind-modal').remove();
+      $('.wunderkind-modal').css({ display: 'none' });
+      $('#overlay').css({ display: 'none' });
     });
   });
 };
@@ -113,6 +144,7 @@ const addGoToCartBtn = () => {
 
 // create modal for webpage
 const addModalToPage = () => {
+  createOverlay();
   createModal();
   addCloseBtn();
   addCartInfoToModal();
@@ -130,8 +162,11 @@ const addModalToPage = () => {
 
 // when the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target === modal) {
-    modal.style.display = 'none';
+  let modal = $('.wunderkind-modal');
+  let overlay = $('#overlay');
+  if (event.target === overlay) {
+    modal.css({ display: 'none' });
+    overlay.css({ display: 'none' });
   }
 };
 
@@ -148,3 +183,6 @@ window.onclick = function (event) {
 
 $(class).remove() ... more expensive DOM manipulation
 */
+
+addModalToPage();
+alertWhenInBottomTenPercent();
