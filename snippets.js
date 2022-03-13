@@ -39,7 +39,7 @@ const alertWhenInBottomTenPercent = () => {
       $(window).scrollTop() + $(window).height() >
       $(document).height() - $(document).height() / 10
     ) {
-      console.log('Bottom 10% of page');
+      // console.log('Bottom 10% of page');
 
       // $('#overlay').css({ display: 'block' });
       // $('.modal').css({ display: 'block' });
@@ -67,9 +67,28 @@ const addCartInfoToModal = () => {
   let itemImagesObj = extractCartItemImages();
   let itemImages = itemImagesObj.map((img) => img.link);
 
-  $('.modal-body').append(`<div>Number of Cart Items: ${numCartItems}</div>`);
-  $('.modal-body').append(`<div>Cart Total: ${cartTotal}</div>`);
-  $('.modal-body').append(`<div>Item Links: ${itemImages[0]}</div>`);
+  $('.modal-body').append(
+    `<div class="modal-cart-info">Number of Cart Items: ${numCartItems}</div>`
+  );
+  $('.modal-body').append(
+    `<div class="modal-cart-info">Cart Total: ${cartTotal}</div>`
+  );
+
+  $('.modal-cart-info').css({
+    'font-size': '1.5rem',
+    padding: '0.5rem',
+    border: '1px solid pink',
+  });
+  $('.modal-body').append(`<div class="modal-img-container"></div>`);
+  $('.modal-img-container').css({
+    background: 'orange',
+    width: '100%',
+    height: '100%',
+  });
+
+  for (let i = 0; i < itemImages.length; i++) {
+    $('.modal-img-container').append(`<img src=${itemImages[i]}></img>`);
+  }
 };
 
 const createOverlay = () => {
@@ -97,7 +116,6 @@ const createModal = () => {
   );
 
   // CSS logic
-
   let winH = $(window).height();
   let winW = $(window).width();
   let modal = $('#wunderkind-modal');
@@ -108,8 +126,8 @@ const createModal = () => {
     'flex-direction': 'column',
     'justify-content': 'center',
     'align-items': 'center',
-    width: '40%',
-    height: '30%',
+    width: '60%',
+    height: '75%',
     position: 'fixed',
     'z-index': '9999',
     border: '3px solid red',
@@ -128,26 +146,42 @@ const createModal = () => {
   $('.modal-content').css({
     display: 'flex',
     'flex-direction': 'column',
-    'justify-content': 'center',
+    'justify-content': 'space-between',
     'align-items': 'center',
     border: '1px solid blue',
     width: '90%',
     height: '100%',
     padding: '0.5rem',
   });
-  $('.modal-header').append('<h5 class="modal-title">Wunderkind Popup</h5>');
-  $('.modal-title').css({ 'font-size': '2rem' });
+  $('.modal-header').css({
+    width: '100%',
+  });
+  $('.modal-header').append('<div class="modal-title">Wunderkind Popup</div>');
+  $('.modal-title').css({
+    'font-size': '2.5rem',
+    background: 'black',
+    color: 'white',
+    'text-align': 'center',
+    padding: '20px, 40px',
+    'border-radius': '5px',
+  });
   $('.modal-content').append('<div class="modal-body"><div>');
-  $('modal-body').css({
-    margin: 'auto',
+  $('.modal-body').css({
+    display: 'flex',
+    'flex-direction': 'column',
+    'justify-content': 'center',
+    'align-items': 'center',
+    width: '100%',
+    height: '100%',
     border: '1px solid green',
-    width: '80%',
+    background: 'orange',
   });
   $('.modal-content').append('<div class="modal-footer"></div>');
   $('.modal-footer').css({
     width: '80%',
     display: 'flex',
     'justify-content': 'space-evenly',
+    'margin-bottom': '4rem',
   });
 
   $('#wunderkind-modal').hide();
@@ -155,10 +189,21 @@ const createModal = () => {
 
 const addCloseBtn = () => {
   $('.modal-footer').append(
-    '<button class="btn btn-secondary" id="wunderkind-modal-close-btn" data-dismiss="modal">Close</button>'
+    '<button class="wunderkind-modal-btn" id="wunderkind-modal-close-btn" data-dismiss="modal">Close</button>'
     // $('.modal-footer').append(
     //   '<button class="close" id="wunderkind-modal-close-btn" data-dismiss="modal">&times;</button>'
   );
+
+  $('.wunderkind-modal-btn').css({
+    'background-color': 'black',
+    color: 'white',
+    border: 'none',
+    'border-radius': '12px',
+    padding: '15px 30px',
+    display: 'inline-block',
+    'font-size': '1.5rem',
+    'text-align': 'center',
+  });
 
   // $(function () {
   //   $('.modal-close-btn').click(function () {
@@ -174,7 +219,7 @@ const addCloseBtn = () => {
 };
 const addGoToCartBtn = () => {
   $('.modal-footer').append(
-    '<button class="btn btn-primary" id="wunderkind-modal-cart-btn">Go To Cart</button>'
+    '<button class="wunderkind-modal-btn" id="wunderkind-modal-cart-btn">Cart</button>'
   );
 
   $(function () {
@@ -190,8 +235,8 @@ const addModalToPage = () => {
   createOverlay();
   createModal();
   addCartInfoToModal();
-  addCloseBtn();
   addGoToCartBtn();
+  addCloseBtn();
 };
 
 // when the user clicks anywhere outside of the modal, close it
