@@ -71,6 +71,26 @@ const alertWhenInBottomTenPercent = () => {
 
 const createModal = () => {
   $('body').prepend('<div class="wunderkind-modal">This is an added div</div>');
+
+  let winH = $(window).height();
+  let winW = $(window).width();
+  let modal = $('.wunderkind-modal');
+
+  //Set the popup window to center
+
+  $('.wunderkind-modal').css({
+    display: 'flex',
+    'flex-direction': 'column',
+    width: '40%',
+    height: '30%',
+    position: 'fixed',
+    'z-index': '10000',
+    border: '3px solid red',
+    'background-color': 'white',
+  });
+
+  modal.css('top', winH / 2 - modal.height() / 2);
+  modal.css('left', winW / 2 - modal.width() / 2);
 };
 
 const addCartInfoToModal = () => {
@@ -90,6 +110,12 @@ const addCloseBtn = () => {
   $('.wunderkind-modal').append(
     '<button class="wunderkind-modal-close-btn">x</button>'
   );
+
+  $(function () {
+    $('.wunderkind-modal-close-btn').click(function () {
+      $('.wunderkind-modal').hide(400);
+    });
+  });
 };
 const addGoToCartBtn = () => {
   $('.wunderkind-modal').append(
@@ -106,11 +132,13 @@ const addModalToPage = () => {
 };
 
 // toggle the modal visibility
-let modal = $('.wunderkind-modal');
-let closeBtn = $('.wunderkind-modal-close-btn');
-closeBtn.onclick = function () {
-  modal.style.display = 'none';
-};
+// let modal = $('.wunderkind-modal');
+// let closeBtn = $('.wunderkind-modal-close-btn');
+// // .click?
+// closeBtn.click = function (e) {
+//   e.preventDefault();
+//   modal.style.display = 'none';
+// };
 
 // when the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
