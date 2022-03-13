@@ -69,15 +69,30 @@ const alertWhenInBottomTenPercent = () => {
   });
 };
 
-// create modal for webpage
-const addModalToPage = () => {
-  createModal();
-};
-
 const createModal = () => {
   $('body').prepend('<div class="wunderkind-modal">This is an added div</div>');
 };
 
+const addCartInfoToModal = () => {
+  let numCartItems = getNumItemsInCart();
+  let cartTotal = calculateCartTotal();
+  let itemImagesObj = extractCartItemImages();
+  let itemImages = itemImagesObj.map((img) => img.link);
+
+  $('.wunderkind-modal').append(
+    `<div>Number of Cart Items: ${numCartItems}</div>`
+  );
+  $('.wunderkind-modal').append(`<div>Cart Total: ${cartTotal}</div>`);
+  $('.wunderkind-modal').append(`<div>Item Links: ${itemImages[0]}</div>`);
+};
+
 const addCloseBtn = () => {
   $('.wunderkind-modal').append('<button>x</button>');
+};
+
+// create modal for webpage
+const addModalToPage = () => {
+  createModal();
+  addCartInfoToModal();
+  addCloseBtn();
 };
