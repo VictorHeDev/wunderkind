@@ -12,7 +12,7 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
   - [x] Creates a trigger that activates when the user scrolls into the bottom 10% of the page.
   - [x] The trigger should show a centered overlay on top of the site that displays the information gathered above and two buttons:
     - [x] one button should close the overlay
-    - [ ] the other should take the user to the cart page
+    - [x] the other should take the user to the cart page
   - [x] Behind the overlay add a semi­-transparent black background that obscures the site.
   - [x] The overlay should be able to trigger multiple times if dismissed.
 - [x] The overlay should have a style consistent with the website. Design matters.
@@ -25,3 +25,5 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
 ### Lessons I learned
 
 - I guess jQuery is not so bad
+- Spent a lot of time trying to get Bootstrap to work with jQuery, but was not successful in that endeavor
+- SOLID principles to break up code utility

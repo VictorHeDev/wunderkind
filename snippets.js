@@ -155,7 +155,7 @@ const createModal = () => {
 
 const addCloseBtn = () => {
   $('.modal-footer').append(
-    '<button class="close" id="wunderkind-modal-close-btn" data-dismiss="modal">Close</button>'
+    '<button class="btn btn-secondary" id="wunderkind-modal-close-btn" data-dismiss="modal">Close</button>'
     // $('.modal-footer').append(
     //   '<button class="close" id="wunderkind-modal-close-btn" data-dismiss="modal">&times;</button>'
   );
@@ -174,7 +174,7 @@ const addCloseBtn = () => {
 };
 const addGoToCartBtn = () => {
   $('.modal-footer').append(
-    '<button class="btn btn-default" id="wunderkind-modal-cart-btn">Go To Cart</button>'
+    '<button class="btn btn-primary" id="wunderkind-modal-cart-btn">Go To Cart</button>'
   );
 
   $(function () {
