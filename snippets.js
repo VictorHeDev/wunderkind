@@ -50,12 +50,14 @@ const alertWhenInBottomTenPercent = () => {
 
 /* UTIL FUNCTIONS */
 const showModal = () => {
-  $('#overlay').show();
+  // $('#overlay').show();
+  $('#overlay').fadeIn(300);
   $('#wunderkind-modal').show();
 };
 
 const hideModal = () => {
-  $('#overlay').hide();
+  // $('#overlay').hide();
+  $('#overlay').fadeOut(300);
   $('#wunderkind-modal').hide();
 };
 
@@ -83,10 +85,10 @@ const createOverlay = () => {
     opacity: '0.5',
     filter: 'alpha(opacity=50)',
     'z-index': '5000',
-    // display: 'none',
+    display: 'none',
   });
 
-  $('#overlay').hide();
+  // $('#overlay').hide();
 };
 
 const createModal = () => {
@@ -112,6 +114,9 @@ const createModal = () => {
     'z-index': '9999',
     border: '3px solid red',
     'background-color': 'white',
+    'box-shadow': '0 0 10px #000000',
+    'border-radius': '5px',
+
     // display: 'none',
   });
 
@@ -125,13 +130,22 @@ const createModal = () => {
     'flex-direction': 'column',
     'justify-content': 'center',
     'align-items': 'center',
+    border: '1px solid blue',
+    width: '90%',
+    height: '100%',
+    padding: '0.5rem',
   });
   $('.modal-header').append('<h5 class="modal-title">Wunderkind Popup</h5>');
   $('.modal-title').css({ 'font-size': '2rem' });
   $('.modal-content').append('<div class="modal-body"><div>');
-  $('modal-body').css({ margin: 'auto', border: '1px solid blue' });
+  $('modal-body').css({
+    margin: 'auto',
+    border: '1px solid green',
+    width: '80%',
+  });
   $('.modal-content').append('<div class="modal-footer"></div>');
   $('.modal-footer').css({
+    width: '80%',
     display: 'flex',
     'justify-content': 'space-evenly',
   });
@@ -160,8 +174,15 @@ const addCloseBtn = () => {
 };
 const addGoToCartBtn = () => {
   $('.modal-footer').append(
-    '<button class="btn btn-default">Go To Cart</button>'
+    '<button class="btn btn-default" id="wunderkind-modal-cart-btn">Go To Cart</button>'
   );
+
+  $(function () {
+    $('#wunderkind-modal-cart-btn').click(function (e) {
+      e.preventDefault();
+      window.location.href = 'https://www.kohls.com/checkout/shopping_cart.jsp';
+    });
+  });
 };
 
 // create modal for webpage
@@ -175,10 +196,14 @@ const addModalToPage = () => {
 
 // when the user clicks anywhere outside of the modal, close it
 window.onclick = function (event) {
-  if (event.target === $('#wunderkind-modal')) {
+  if (event.target === $('#overlay')) {
     hideModal();
   }
 };
+
+// $('#overlay').click(function () {
+//   hideModal();
+// });
 
 addModalToPage();
 alertWhenInBottomTenPercent();

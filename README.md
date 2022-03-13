@@ -11,11 +11,11 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
   - [x] Extracts the number of items in the cart, the cart total, and the item images from the page. Store them in variables.
   - [x] Creates a trigger that activates when the user scrolls into the bottom 10% of the page.
   - [x] The trigger should show a centered overlay on top of the site that displays the information gathered above and two buttons:
-    - [ ] one button should close the overlay
+    - [x] one button should close the overlay
     - [ ] the other should take the user to the cart page
-  - [ ] Behind the overlay add a semi­-transparent black background that obscures the site.
-  - [ ] The overlay should be able to trigger multiple times if dismissed.
-- [ ] The overlay should have a style consistent with the website. Design matters.
+  - [x] Behind the overlay add a semi­-transparent black background that obscures the site.
+  - [x] The overlay should be able to trigger multiple times if dismissed.
+- [x] The overlay should have a style consistent with the website. Design matters.
 
 ### Resources Used
 
