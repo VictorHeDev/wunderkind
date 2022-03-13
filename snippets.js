@@ -87,12 +87,48 @@ const addCartInfoToModal = () => {
 };
 
 const addCloseBtn = () => {
-  $('.wunderkind-modal').append('<button>x</button>');
+  $('.wunderkind-modal').append(
+    '<button class="wunderkind-modal-close-btn">x</button>'
+  );
+};
+const addGoToCartBtn = () => {
+  $('.wunderkind-modal').append(
+    '<button class="wunderkind-modal-cart-btn">Go To Cart</button>'
+  );
 };
 
 // create modal for webpage
 const addModalToPage = () => {
   createModal();
-  addCartInfoToModal();
   addCloseBtn();
+  addCartInfoToModal();
+  addGoToCartBtn();
 };
+
+// toggle the modal visibility
+let modal = $('.wunderkind-modal');
+let closeBtn = $('.wunderkind-modal-close-btn');
+closeBtn.onclick = function () {
+  modal.style.display = 'none';
+};
+
+// when the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+};
+
+/*
+.modal {
+   width: 300px;
+   height: 300px;
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   margin-left: -150px;
+   margin-top: -150px;
+}
+
+$(class).remove() ... more expensive DOM manipulation
+*/
