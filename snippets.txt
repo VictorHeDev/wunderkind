@@ -1,12 +1,17 @@
 /* LOGIC FOR MODAL CONTENT */
 const getNumItemsInCart = () => {
-  let numItemsInCart = $('.number-items.boss-number-items.nonzero-items')[0]
-    .innerHTML;
+  let numItemsInCart =
+    $('.number-items.boss-number-items.nonzero-items')[0] !== undefined
+      ? $('.number-items.boss-number-items.nonzero-items')[0].innerHTML
+      : '0';
+
   return numItemsInCart;
 };
 
 const calculateCartTotal = () => {
-  let subTotal = $('.subtotal')[0].innerHTML;
+  // let subTotal = $('.subtotal')[0].innerHTML;
+  let subTotal =
+    $('.subtotal')[0] !== undefined ? $('.subtotal')[0].innerHTML : '$0.00';
   return subTotal;
 };
 
