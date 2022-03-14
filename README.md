@@ -22,6 +22,11 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
 - [jQuery](https://api.jquery.com/) - instead of using Vanilla JS to manipulate the DOM
 - [Kohls](https://www.kohls.com/) - main website used to practice
 
+### Bugs I encountered
+- Images were undefined unless the cart was first clicked on the homepage
+  - Added a click event within script to combat this problem
+- 
+
 ### Lessons I learned
 
 - I guess jQuery is not so bad
