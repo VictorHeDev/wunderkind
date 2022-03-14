@@ -39,7 +39,6 @@ const alertWhenInBottomTenPercent = () => {
       $(window).scrollTop() + $(window).height() >
       $(document).height() - $(document).height() / 10
     ) {
-      // console.log('Bottom 10% of page');
       showModal();
     }
   });
@@ -47,13 +46,11 @@ const alertWhenInBottomTenPercent = () => {
 
 /* UTIL FUNCTIONS */
 const showModal = () => {
-  // $('#overlay').show();
   $('#overlay').fadeIn(300);
   $('#wunderkind-modal').show();
 };
 
 const hideModal = () => {
-  // $('#overlay').hide();
   $('#overlay').fadeOut(300);
   $('#wunderkind-modal').hide();
 };
@@ -65,7 +62,6 @@ const addCartInfoToModal = () => {
 
   $('.modal-body').append(`<div class="modal-imgs-container"></div>`);
 
-  // div classname bug
   for (let i = 0; i < itemImagesObj.length; i++) {
     $('.modal-imgs-container').append(
       `<div class="modal-img${i}-container"></div>`
@@ -110,7 +106,6 @@ const addCartInfoToModal = () => {
   $('.modal-cart-info').css({
     'font-size': '1.2rem',
     padding: '0.3rem',
-    // border: '1px solid pink',
   });
 };
 
@@ -153,7 +148,6 @@ const createModal = () => {
     height: '75%',
     position: 'fixed',
     'z-index': '9999',
-    // border: '3px solid red',
     'background-color': 'white',
     'box-shadow': '0 0 10px #000000',
     'border-radius': '5px',
@@ -171,7 +165,6 @@ const createModal = () => {
     'flex-direction': 'column',
     'justify-content': 'space-between',
     'align-items': 'center',
-    // border: '1px solid blue',
     width: '90%',
     height: '100%',
     padding: '0.5rem',
@@ -197,8 +190,6 @@ const createModal = () => {
     'align-items': 'center',
     width: '100%',
     height: '75%',
-    // border: '1px solid green',
-    // background: 'orange',
   });
   $('.modal-content').append('<div class="modal-footer"></div>');
   $('.modal-footer').css({
