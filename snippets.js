@@ -40,9 +40,6 @@ const alertWhenInBottomTenPercent = () => {
       $(document).height() - $(document).height() / 10
     ) {
       // console.log('Bottom 10% of page');
-
-      // $('#overlay').css({ display: 'block' });
-      // $('.modal').css({ display: 'block' });
       showModal();
     }
   });
@@ -65,7 +62,43 @@ const addCartInfoToModal = () => {
   let numCartItems = getNumItemsInCart();
   let cartTotal = calculateCartTotal();
   let itemImagesObj = extractCartItemImages();
-  let itemImages = itemImagesObj.map((img) => img.link);
+
+  $('.modal-body').append(`<div class="modal-imgs-container"></div>`);
+
+  // div classname bug
+  for (let i = 0; i < itemImagesObj.length; i++) {
+    $('.modal-imgs-container').append(
+      `<div class="modal-img${i}-container"></div>`
+    );
+    $(`.modal-img${i}-container`).append(
+      `<div class="modal-cart-item-name">${itemImagesObj[i].itemName}<div>`
+    );
+    $(`.modal-img${i}-container`).append(
+      `<img src=${itemImagesObj[i].link}></img>`
+    );
+
+    $(`.modal-img${i}-container`).css({
+      display: 'flex',
+      'justify-content': 'space-between',
+      padding: '1rem',
+      'border-bottom': '1px solid grey',
+    });
+  }
+
+  $('.modal-imgs-container').css({
+    display: 'flex',
+    'flex-direction': 'column',
+    padding: '1rem',
+    width: '95%',
+    height: '100%',
+    border: '1px solid grey',
+    'border-radius': '5px',
+    'overflow-y': 'scroll',
+  });
+
+  $('.modal-cart-item-name').css({
+    'font-size': '1rem',
+  });
 
   $('.modal-body').append(
     `<div class="modal-cart-info">Number of Cart Items: ${numCartItems}</div>`
@@ -75,20 +108,10 @@ const addCartInfoToModal = () => {
   );
 
   $('.modal-cart-info').css({
-    'font-size': '1.5rem',
-    padding: '0.5rem',
-    border: '1px solid pink',
+    'font-size': '1.2rem',
+    padding: '0.3rem',
+    // border: '1px solid pink',
   });
-  $('.modal-body').append(`<div class="modal-img-container"></div>`);
-  $('.modal-img-container').css({
-    background: 'orange',
-    width: '100%',
-    height: '100%',
-  });
-
-  for (let i = 0; i < itemImages.length; i++) {
-    $('.modal-img-container').append(`<img src=${itemImages[i]}></img>`);
-  }
 };
 
 const createOverlay = () => {
@@ -130,7 +153,7 @@ const createModal = () => {
     height: '75%',
     position: 'fixed',
     'z-index': '9999',
-    border: '3px solid red',
+    // border: '3px solid red',
     'background-color': 'white',
     'box-shadow': '0 0 10px #000000',
     'border-radius': '5px',
@@ -148,13 +171,14 @@ const createModal = () => {
     'flex-direction': 'column',
     'justify-content': 'space-between',
     'align-items': 'center',
-    border: '1px solid blue',
+    // border: '1px solid blue',
     width: '90%',
     height: '100%',
     padding: '0.5rem',
   });
   $('.modal-header').css({
     width: '100%',
+    'margin-top': '1.2rem',
   });
   $('.modal-header').append('<div class="modal-title">Wunderkind Popup</div>');
   $('.modal-title').css({
@@ -172,16 +196,16 @@ const createModal = () => {
     'justify-content': 'center',
     'align-items': 'center',
     width: '100%',
-    height: '100%',
-    border: '1px solid green',
-    background: 'orange',
+    height: '75%',
+    // border: '1px solid green',
+    // background: 'orange',
   });
   $('.modal-content').append('<div class="modal-footer"></div>');
   $('.modal-footer').css({
     width: '80%',
     display: 'flex',
     'justify-content': 'space-evenly',
-    'margin-bottom': '4rem',
+    'margin-bottom': '2rem',
   });
 
   $('#wunderkind-modal').hide();
@@ -190,26 +214,19 @@ const createModal = () => {
 const addCloseBtn = () => {
   $('.modal-footer').append(
     '<button class="wunderkind-modal-btn" id="wunderkind-modal-close-btn" data-dismiss="modal">Close</button>'
-    // $('.modal-footer').append(
-    //   '<button class="close" id="wunderkind-modal-close-btn" data-dismiss="modal">&times;</button>'
   );
 
   $('.wunderkind-modal-btn').css({
     'background-color': 'black',
     color: 'white',
     border: 'none',
-    'border-radius': '12px',
+    'border-radius': '10px',
     padding: '15px 30px',
     display: 'inline-block',
     'font-size': '1.5rem',
     'text-align': 'center',
   });
 
-  // $(function () {
-  //   $('.modal-close-btn').click(function () {
-  //     $('.modal').hide(400);
-  //   });
-  // });
   $(function () {
     $('#wunderkind-modal-close-btn').click(function (e) {
       e.preventDefault();
@@ -217,6 +234,7 @@ const addCloseBtn = () => {
     });
   });
 };
+
 const addGoToCartBtn = () => {
   $('.modal-footer').append(
     '<button class="wunderkind-modal-btn" id="wunderkind-modal-cart-btn">Cart</button>'
@@ -227,6 +245,10 @@ const addGoToCartBtn = () => {
       e.preventDefault();
       window.location.href = 'https://www.kohls.com/checkout/shopping_cart.jsp';
     });
+  });
+
+  $('#wunderkind-modal-cart-btn').css({
+    'background-color': '#24A0ED',
   });
 };
 
@@ -239,16 +261,10 @@ const addModalToPage = () => {
   addCloseBtn();
 };
 
-// when the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-  if (event.target === $('#overlay')) {
-    hideModal();
-  }
+const startScript = () => {
+  $('.number-items').trigger('click');
+  addModalToPage();
+  alertWhenInBottomTenPercent();
 };
 
-// $('#overlay').click(function () {
-//   hideModal();
-// });
-
-addModalToPage();
-alertWhenInBottomTenPercent();
+startScript();
