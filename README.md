@@ -2,7 +2,7 @@
 
 ### Prompt
 
-At Wunderkind, we often execute complex problems using entirely front-end JavaScript. For this challenge your solution should work if it is pasted directly into the JavaScript console of the browser after the page has fully loaded. Feel free to use jQuery. Also, our WKND products must work across all browsers, but we will be testing your challenge in Chrome.
+At `Wunderkind`, we often execute complex problems using entirely front-end JavaScript. For this challenge your solution should work if it is pasted directly into the JavaScript console of the browser after the page has fully loaded. Feel free to use jQuery. Also, our `WKND` products must work across all browsers, but we will be testing your challenge in Chrome.
 
 ### Instructions
 
@@ -23,12 +23,20 @@ At Wunderkind, we often execute complex problems using entirely front-end JavaSc
 - [Kohls](https://www.kohls.com/) - main website used to practice
 
 ### Bugs I encountered
+
 - Images were undefined unless the cart was first clicked on the homepage
   - Added a click event within script to combat this problem
-- 
+- No cart items -> returns undefined
+  - Conditionally render 0 items in cart, $0.00 total in the modal
+- Having additional items that did not fit in the modal
+  - Used CSS overflow-y for better UI experience
 
 ### Lessons I learned
 
 - I guess jQuery is not so bad
 - Spent a lot of time trying to get Bootstrap to work with jQuery, but was not successful in that endeavor
 - SOLID principles to break up code utility
+
+### Example image of completed modal
+
+[![Wunderkind Modal](wunderkind-modal.png)](wunderkind-modal.png)
